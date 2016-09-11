@@ -3,7 +3,6 @@
 import urllib
 import urllib2
 import re
-import pytool
 
 #去除img标签,7位长空格
 removeImg = re.compile('<img.*?>| {7}|')

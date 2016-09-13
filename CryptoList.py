@@ -57,7 +57,8 @@ try:
     for item in items:
         item = replace(item)
         itemdetail = item.split()
-        print ('%-4s%-15s%-16s%-14s%-16s%-10s%-14s%-10s' % (itemdetail[0],itemdetail[1],itemdetail[2],itemdetail[3],itemdetail[4],itemdetail[5],itemdetail[6],itemdetail[7]))
+#       print ('%-4s%-15s%-16s%-14s%-16s%-10s%-14s%-10s' % (itemdetail[0],itemdetail[1],itemdetail[2],itemdetail[3],itemdetail[4],itemdetail[5],itemdetail[6],itemdetail[7]))
+        print ('%-4s%-15s%+16s%+14s%+16s%+10s%+14s%+10s' % (itemdetail[0],itemdetail[1],itemdetail[2],itemdetail[3],itemdetail[4],itemdetail[5],itemdetail[6],itemdetail[7]))
 #        print item
     
 except urllib2.URLError, e:

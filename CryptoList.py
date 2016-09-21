@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import urllib
 import urllib2
 import re
 
@@ -58,7 +57,8 @@ try:
         item = replace(item)
         itemdetail = item.split()
 #       print ('%-4s%-15s%-16s%-14s%-16s%-10s%-14s%-10s' % (itemdetail[0],itemdetail[1],itemdetail[2],itemdetail[3],itemdetail[4],itemdetail[5],itemdetail[6],itemdetail[7]))
-        print ('%-4s%-15s%+16s%+14s%+16s%+10s%+14s%+10s' % (itemdetail[0],itemdetail[1],itemdetail[2],itemdetail[3],itemdetail[4],itemdetail[5],itemdetail[6],itemdetail[7]))
+        if int(itemdetail[0]) <= 10 or itemdetail[1] == "Dogecoin"  or itemdetail[1] == "BlackCoin" or itemdetail[1] == "DigiByte":
+            print ('%-4s%-15s%+16s%+14s%+16s%+10s%+14s%+10s' % (itemdetail[0],itemdetail[1],itemdetail[2],itemdetail[3],itemdetail[4],itemdetail[5],itemdetail[6],itemdetail[7]))
 #        print item
     
 except urllib2.URLError, e:
@@ -67,5 +67,3 @@ except urllib2.URLError, e:
 #        print e.code
 #    if hasattr(e,"reason"):
 #        print e.reason
-
-

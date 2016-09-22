@@ -1,0 +1,189 @@
+http://www.predream.org/show-58-320-1.html
+
+雅虎财经和新浪财经股票API，中国A股实时和历史数据API获取
+
+本文介绍Yahoo财经频道获取股票数据的API。可以通过此股票API获取实时数据。
+实时数据请求
+请求地址
+http://finance.yahoo.com/d/quotes.csv?s=<股票名称>&f=<数据列选项>  
+参数
+
+    s — 表示股票名称，多个股票之间使用英文加号分隔，如“XOM+BBDb.TO+JNJ+MSFT”，罗列了四个公司的股票：XOM, BBDb.TO, JNJ, MSFT。
+    f — 表示返回数据列，如“snd1l1yr”。更详细的参见附录。
+
+示例
+http://finance.yahoo.com/d/quotes.csv?s=XOM+BBDb.TO+JNJ+MSFT&f=snd1l1yr  
+
+返回：
+"XOM","Exxon Mobil Corpo","10/7/2010",63.85,2.69,12.33
+"BBD-B.TO","BOMBARDIER INC., ","10/7/2010",5.27,1.90,N/A
+"JNJ","Johnson & Johnson","10/7/2010",63.22,3.26,13.06
+"MSFT","Microsoft Corpora","10/7/2010",24.53,2.12,11.68  
+历史数据请求
+
+上述是获取当前最新的数据，若需要获得历史数据，请使用下面API。
+请求地址
+http://ichart.yahoo.com/table.csv?s=&a=&b=&c=&d=&e=&f=&g=d&ignore=.csv  
+参数
+
+    s — 股票名称
+    a — 起始时间，月
+    b — 起始时间，日
+    c — 起始时间，年
+    d — 结束时间，月
+    e — 结束时间，日
+    f — 结束时间，年
+    g — 时间周期。Example: g=w, 表示周期是‘周’。d->‘日’(day), w->‘周’(week)，m->‘月’(mouth)，v->‘dividends only’
+
+一定注意月份参数，其值比真实数据-1。如需要9月数据，则写为08。
+示例
+
+查询浦发银行2010.09.25 – 2010.10.8之间日线数据
+http://ichart.yahoo.com/table.csv?s=600000.SS&a=08&b=25&c=2010&d=09&e=8&f=2010&g=d  
+
+返回：
+Date,Open,High,Low,Close,Volume,Adj Close
+2010-09-30,12.37,12.99,12.32,12.95,76420500,12.95
+2010-09-29,12.20,12.69,12.12,12.48,79916400,12.48
+2010-09-28,12.92,12.92,12.57,12.58,63988100,12.58
+2010-09-27,13.00,13.02,12.89,12.94,43203600,12.94  
+深沪股票代码
+
+yahoo的api是国际性的，是支持国内沪深股市的，但代码稍微变动一下，如浦发银行的代号是：600000.SS。规则是：上海市场末尾加.ss，深圳市场末尾加.sz。
+
+—— EOF ——
+参考
+
+    http://code.google.com/p/yahoo-finance-managed/
+    http://finance.yahoo.com/
+    http://www.gummy-stuff.org/Yahoo-data.htm
+    Python API Class http://www.goldb.org/ystockquote.html
+    Ruby API Class http://www.transparentech.com/opensource/yahoofinance
+
+
+附录
+
+雅虎股票API f参数对照表
+a 	Ask 	a2 	Average Daily Volume 	a5 	Ask Size
+b 	Bid 	b2 	Ask (Real-time) 	b3 	Bid (Real-time)
+b4 	Book Value 	b6 	Bid Size 	c 	Change & Percent Change
+c1 	Change 	c3 	Commission 	c6 	Change (Real-time)
+c8 	After Hours Change (Real-time) 	d 	Dividend/Share 	d1 	Last Trade Date
+d2 	Trade Date 	e 	Earnings/Share 	e1 	Error Indication (returned for symbol changed / invalid)
+e7 	EPS Estimate Current Year 	e8 	EPS Estimate Next Year 	e9 	EPS Estimate Next Quarter
+f6 	Float Shares 	g 	Day’s Low 	h 	Day’s High
+j 	52-week Low 	k 	52-week High 	g1 	Holdings Gain Percent
+g3 	Annualized Gain 	g4 	Holdings Gain 	g5 	Holdings Gain Percent (Real-time)
+g6 	Holdings Gain (Real-time) 	i 	More Info 	i5 	Order Book (Real-time)
+j1 	Market Capitalization 	j3 	Market Cap (Real-time) 	j4 	EBITDA
+j5 	Change From 52-week Low 	j6 	Percent Change From 52-week Low 	k1 	Last Trade (Real-time) With Time
+k2 	Change Percent (Real-time) 	k3 	Last Trade Size 	k4 	Change From 52-week High
+k5 	Percebt Change From 52-week High 	l 	Last Trade (With Time) 	l1 	Last Trade (Price Only)
+l2 	High Limit 	l3 	Low Limit 	m 	Day’s Range
+m2 	Day’s Range (Real-time) 	m3 	50-day Moving Average 	m4 	200-day Moving Average
+m5 	Change From 200-day Moving Average 	m6 	Percent Change From 200-day Moving Average 	m7 	Change From 50-day Moving Average
+m8 	Percent Change From 50-day Moving Average 	n 	Name 	n4 	Notes
+o 	Open 	p 	Previous Close 	p1 	Price Paid
+p2 	Change in Percent 	p5 	Price/Sales 	p6 	Price/Book
+q 	Ex-Dividend Date 	r 	P/E Ratio 	r1 	Dividend Pay Date
+r2 	P/E Ratio (Real-time) 	r5 	PEG Ratio 	r6 	Price/EPS Estimate Current Year
+r7 	Price/EPS Estimate Next Year 	s 	Symbol 	s1 	Shares Owned
+s7 	Short Ratio 	t1 	Last Trade Time 	t6 	Trade Links
+t7 	Ticker Trend 	t8 	1 yr Target Price 	v 	Volume
+v1 	Holdings Value 	v7 	Holdings Value (Real-time) 	w 	52-week Range
+w1 	Day’s Value Change 	w4 	Day’s Value Change (Real-time) 	x 	Stock Exchange
+y 	Dividend Yield
+
+
+Sina股票数据接口
+
+
+以大秦铁路（股票代码：601006）为例，如果要获取它的最新行情，只需访问新浪的股票数据
+接口：http://hq.sinajs.cn/list=sh601006这个url会返回一串文本，例如：
+
+var hq_str_sh601006="大秦铁路, 27.55, 27.25, 26.91, 27.55, 26.20, 26.91, 26.92,
+22114263, 589824680, 4695, 26.91, 57590, 26.90, 14700, 26.89, 14300,
+ 26.88, 15100, 26.87, 3100, 26.92, 8900, 26.93, 14230, 26.94, 25150, 26.95, 15220, 26.96, 2008-01-11, 15:05:32";
+
+这个字符串由许多数据拼接在一起，不同含义的数据用逗号隔开了，按照程序员的思路，顺序号从0开始。
+0：”大秦铁路”，股票名字；
+1：”27.55″，今日开盘价；
+2：”27.25″，昨日收盘价；
+3：”26.91″，当前价格；
+4：”27.55″，今日最高价；
+5：”26.20″，今日最低价；
+6：”26.91″，竞买价，即“买一”报价；
+7：”26.92″，竞卖价，即“卖一”报价；
+8：”22114263″，成交的股票数，由于股票交易以一百股为基本单位，所以在使用时，通常把该值除以一百；
+9：”589824680″，成交金额，单位为“元”，为了一目了然，通常以“万元”为成交金额的单位，所以通常把该值除以一万；
+10：”4695″，“买一”申请4695股，即47手；
+11：”26.91″，“买一”报价；
+12：”57590″，“买二”
+13：”26.90″，“买二”
+14：”14700″，“买三”
+15：”26.89″，“买三”
+16：”14300″，“买四”
+17：”26.88″，“买四”
+18：”15100″，“买五”
+19：”26.87″，“买五”
+20：”3100″，“卖一”申报3100股，即31手；
+21：”26.92″，“卖一”报价
+(22, 23), (24, 25), (26,27), (28, 29)分别为“卖二”至“卖四的情况”
+30：”2008-01-11″，日期；
+31：”15:05:32″，时间；
+
+这个接口对于JavaScript程序非常方便，通常的使用方式为，静态或动态地在页面中插入：
+
+<script type="text/javascript" src="http://hq.sinajs.cn/list=sh601006" charset="gb2312">
+
+</script>
+
+ <script type="text/javascript">
+
+ var elements=hq_str_sh601006.split(",");
+
+document.write("current price:"+elements[3]);
+
+</script>
+
+这段代码输出大秦铁路（股票代码：601006）的当前股价
+
+current price:14.20
+
+如果你要同时查询多个股票，那么在URL最后加上一个逗号，再加上股票代码就可以了；比如你要一次查询大秦铁路（601006）和大同煤业（601001）的行情，就这样使用URL：
+http://hq.sinajs.cn/list=sh601003,sh601001
+
+但如果你要查询大盘指数，情况会有不同，比如查询上证综合指数（000001），使用如下URL：
+http://hq.sinajs.cn/list=s_sh000001 服务器返回的数据为：
+
+var hq_str_s_sh000001="上证指数,3094.668,-128.073,-3.97,436653,5458126";
+
+数据含义分别为：指数名称，当前点数，当前价格，涨跌率，成交量（手），成交额（万元）；
+
+查询深圳成指的URL为：
+http://hq.sinajs.cn/list=s_sz399001
+
+ 
+
+对于股票的K线图，日线图等的获取可以通过请求http://image.sinajs.cn/…./…/*.gif此URL获取，其中*代表股票代码，详见如下：
+
+查看日K线图：
+
+http://image.sinajs.cn/newchart/daily/n/sh601006.gif
+
+
+分时线的查询：
+
+http://image.sinajs.cn/newchart/min/n/sh000001.gif
+
+日K线查询：
+
+http://image.sinajs.cn/newchart/daily/n/sh000001.gif
+
+周K线查询：
+
+http://image.sinajs.cn/newchart/weekly/n/sh000001.gif
+
+月K线查询：
+
+http://image.sinajs.cn/newchart/monthly/n/sh000001.gif

@@ -90,7 +90,7 @@ for i in range(len(stockValueList)):
     listInfo = listInfo.split(",")
     # print len(listInfo)
     
-    change = ((float(listInfo[3])-float(listInfo[1]))/float(listInfo[3]))*100
+    change = ((float(listInfo[3])-float(listInfo[2]))/float(listInfo[3]))*100
     
     # print "%-8s %+10s %+10s %+10s %+8.2f %+6.2f %+10s %+10s %12s %18s" % (stockList[i],(listInfo[2]),(listInfo[1]),listInfo[3],float(listInfo[3])-float(listInfo[1]),change,listInfo[4],listInfo[5],listInfo[8],listInfo[9])
-    print "%-8s %+10s %+10s %+10s %+8.2f %+6.2f %+10s %+10s" % (stockList[i],(listInfo[2]),(listInfo[1]),listInfo[3],float(listInfo[3])-float(listInfo[1]),change,listInfo[4],listInfo[5])
+    print "%-8s %+10s %+10s %+10s %+8.2f %+6.2f %+10s %+10s" % (stockList[i],(listInfo[2]),(listInfo[1]),listInfo[3],float(listInfo[3])-float(listInfo[2]),change,listInfo[4],listInfo[5])

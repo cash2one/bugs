@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 import re
 import json
@@ -35,6 +35,10 @@ def encrypt_passwd(passwd, pubkey, servertime, nonce):
 def wblogin():
     username = USER_NAME
     password = PASSWD
+    
+    '''
+        for Request preLogin URL
+    '''
     resp = session.get(
         'http://login.sina.com.cn/sso/prelogin.php?'
         'entry=weibo&callback=sinaSSOController.preloginCallBack&'
@@ -76,6 +80,9 @@ def wblogin():
         'returntype': 'META'
     }
 
+    '''
+        for Request Login URL
+    '''
     resp = session.post(
         'http://login.sina.com.cn/sso/login.php?client=%s' % WBCLIENT,
         data=data
@@ -83,12 +90,16 @@ def wblogin():
 
     # login_url = re.search('replace\\(\'([^\']+)\'\\)', resp.text).group(1) 
     login_url = re.search('replace\\(\'([^\']+)\'\\)', resp.text).group(1)
+    # print "resp.text-> " ,resp.text.encode("utf8")
+    # print "login_url-> " ,login_url
     
-    # print "login_url->" ,login_url
-    
+    '''
+        Finnally Get request for Getting Session
+    '''
     resp = session.get(login_url)
     login_str = re.search('\((\{.*\})\)', resp.text).group(1)
-
+    # print "resp.text-> " ,resp.text.encode("utf8")
+    
     login_info = json.loads(login_str)
     # logger.info(u"登录成功：" + str(login_info))
 
@@ -104,5 +115,5 @@ if __name__ == '__main__':
     text = r.text
     # print text.split()
     print r.url
-    print text.encode("utf8")
+    # print text.encode("utf8")
     

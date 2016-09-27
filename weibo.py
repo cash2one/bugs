@@ -11,8 +11,6 @@ import requests
 import sys
 sys.path.insert( 0, '..' )
 
-# from logger import logger
-
 USER_NAME = ""
 PASSWD = ""
 
@@ -45,17 +43,10 @@ def wblogin():
         'su=%s&rsakt=mod&checkpin=1&client=%s' %
         (base64.b64encode(username.encode('utf-8')), WBCLIENT)
     )
-
-    # print "resp ->" , resp
-    # print "resp.text ->" , resp.text
     
     pre_login_str = re.match(r'[^{]+({.+?})', resp.text).group(1)
     pre_login = json.loads(pre_login_str)
-
-    # print "pre_login_str ->" , pre_login_str
-    # print "pre_login ->" , pre_login
     
-    # pre_login = json.loads(pre_login_str)
     data = {
         'entry': 'weibo',
         'gateway': 1,
@@ -84,24 +75,19 @@ def wblogin():
         for Request Login URL
     '''
     resp = session.post(
-        'http://login.sina.com.cn/sso/login.php?client=%s' % WBCLIENT,
-        data=data
+        'http://login.sina.com.cn/sso/login.php?client=%s' % WBCLIENT , data=data
     )
 
-    # login_url = re.search('replace\\(\'([^\']+)\'\\)', resp.text).group(1) 
     login_url = re.search('replace\\(\'([^\']+)\'\\)', resp.text).group(1)
-    # print "resp.text-> " ,resp.text.encode("utf8")
-    # print "login_url-> " ,login_url
     
     '''
         Finnally Get request for Getting Session
     '''
     resp = session.get(login_url)
     login_str = re.search('\((\{.*\})\)', resp.text).group(1)
-    # print "resp.text-> " ,resp.text.encode("utf8")
     
     login_info = json.loads(login_str)
-    # logger.info(u"登录成功：" + str(login_info))
+    print ("Login Success:" + str(login_info))
 
     uniqueid = login_info["userinfo"]["uniqueid"]
     return (session, uniqueid)
@@ -110,10 +96,7 @@ def wblogin():
 if __name__ == '__main__':
     (http, uid) = wblogin()
     r = http.get('http://weibo.com/')
-    # r = http.get('http://m.weibo.cn/')
-    # print r.headers
     text = r.text
-    # print text.split()
     print r.url
     # print text.encode("utf8")
     

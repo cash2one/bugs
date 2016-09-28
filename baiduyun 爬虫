@@ -10,3 +10,9 @@ http://yun.baidu.com/pcloud/friend/getfollowlist?query_uk=1327787586&limit=25&st
 URL_FANS = 'http://yun.baidu.com/pcloud/friend/getfanslist?query_uk={uk}&limit=20&start={start}&urlid={id}'
 
 http://yun.baidu.com/pcloud/friend/getfanslist?query_uk=1327787586&limit=25&start=0
+
+
+
+wap
+http://yun.baidu.com/wap/share/home?third=0&uk=2214641459&start=
+http://yun.baidu.com/wap/share/home?third=0&uk=2214641459&start=101&adapt=pc&fr=ftw

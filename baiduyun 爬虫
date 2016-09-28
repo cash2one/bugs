@@ -1,0 +1,12 @@
+URL_SHARE = 'http://yun.baidu.com/pcloud/feed/getsharelist?auth_type=1&start={start}&limit=20&query_uk={uk}&urlid={id}'
+http://yun.baidu.com/pcloud/feed/getsharelist?auth_type=1&start=0&limit=20&query_uk=1327787586&urlid=870503730
+
+
+
+URL_FOLLOW = 'http://yun.baidu.com/pcloud/friend/getfollowlist?query_uk={uk}&limit=20&start={start}&urlid={id}'
+
+http://yun.baidu.com/pcloud/friend/getfollowlist?query_uk=1327787586&limit=25&start=0
+
+URL_FANS = 'http://yun.baidu.com/pcloud/friend/getfanslist?query_uk={uk}&limit=20&start={start}&urlid={id}'
+
+http://yun.baidu.com/pcloud/friend/getfanslist?query_uk=1327787586&limit=25&start=0

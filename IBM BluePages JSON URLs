@@ -1,0 +1,16 @@
+https://w3-services1.w3-969.ibm.com/myw3/unified-profile/v1/docs/instances/master?userId=xxxxxx760
+
+http://w3-services1.w3-969.ibm.com/myw3/unified-profile/v1/search/user?searchConfig=optimized_search&rows=24&timeout=2000&userId=xxxxx672&query=xxx@cn.ibm.com
+
+http://w3-services1.w3-969.ibm.com/myw3/unified-profile/v1/search/user?searchConfig=optimized_search&rows=24&timeout=2000&query=xxxx@cn.ibm.com
+
+http://w3-services1.w3-969.ibm.com/myw3/unified-profile/v1/search/user?searchConfig=optimized_search&rows=24&timeout=2000&query=xxxx@jp.ibm.com
+
+http://w3-services1.w3-969.ibm.com/myw3/unified-profile-photo/v1/image/xxxxxx672
+
+
+http://w3-services1.w3-969.ibm.com/myw3/unified-profile/v1/docs/instances/types/profile_extended/users/xxxxx672
+
+
+TeamInfo
+http://w3-services1.w3-969.ibm.com/myw3/unified-profile/v1/docs/instances/teamInfoResolved/xxxxx672

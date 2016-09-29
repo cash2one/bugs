@@ -94,35 +94,20 @@ try:
     # user_agent  = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
     # headers     = { 'User-Agent' : user_agent }
     apiUrl      = "https://api.coinmarketcap.com/v1/ticker/"
-    limitCount  = 10
+    limitCount  = 50
     apiUrlLimit = apiUrl + "?limit=%s" % limitCount
-    spCoinList  = ["BlackCoin","DigiByte","Dogecoin"]
+    spCoinList  = ["Bitcoin","Litecoin","BlackCoin","DigiByte","Dogecoin"]
     apiUrlSp    = apiUrl
 
-    # print apiUrl
-    # print limitCount
-    # print apiUrlLimit
-    # print spCoinList[0].strip()
-    # print apiUrlSp
-
     # rs = requests.get(apiUrlLimit, headers =headers )
-    # r = requests.get(apiUrlLimit)
-    r = requests.get(apiUrl)
+    r = requests.get(apiUrlLimit)
+    # r = requests.get(apiUrl) 
     
-    # print r.json()
-    # print type(r.text)
-    # data = json.dumps(r.text)
-    # print data
-    # print type(r.json())
-    # print r.json()[0]
-    # coinDict = r.json()[0]
-    # print type(coinDict)
-    # print coinDict
-
     print " NO SYMBOL NAME                PRICE   24H_VOLUME     MARKET_CAP    AVAILABLE        TOTAL  CHG_1H CHG_24H  CHG_7D  LAST_UPDATED" 
     print "-"*135
     for coinDict in r.json():
-        if int(coinDict["rank"]) <= int(limitCount) or coinDict["symbol"] == "BLK" or coinDict["symbol"] == "DGB" or coinDict["symbol"] == "DOGE":
+        if int(coinDict["rank"]) <= 5 or \
+        coinDict["name"] in spCoinList:
             print "%+3s %-6s %-16s %8.4f %+12s %+14s %12.0f %12.0f %+7.2f %+7.2f %+7.2f %+20s " % (
                 coinDict["rank"], 
                 coinDict["symbol"],
@@ -153,20 +138,6 @@ try:
         coinDict = r.json()
         # print coinDict
         for coinDict in r.json():
-            print "%+3s %-6s %-16s %+12s %+12s %+14s %+14s %+14s %+8s %+8s %+8s %+20s " % (
-                coinDict["rank"], 
-                coinDict["symbol"],
-                coinDict["name"],
-                coinDict["price_usd"],
-                coinDict["24h_volume_usd"],
-                coinDict["market_cap_usd"],
-                coinDict["available_supply"],
-                coinDict["total_supply"],
-                coinDict["percent_change_1h"],
-                coinDict["percent_change_24h"],
-                coinDict["percent_change_7d"],
-                time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(int(coinDict["last_updated"])))
-                )
         pass
     '''
 except:
